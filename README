@@ -1,0 +1,45 @@
+mphp
+------------------------------------------
+PHP4Mono is a compiler that enables Mono to run PHP code. It translates 
+PHP scripts to Common Intermediate Language (CIL). Like that PHP scripts 
+can be executed as console applications on Mono. You can even access 
+other .NET assemblies and e.g. build Graphical User Interfaces directly 
+from within a PHP script using the Gnome libraries.
+
+Runtime requirements:
+  mono-2.4.3.1-1
+
+Build requirements:
+  cygport-0.9.80-1
+  mono-2.4.3.1-1
+
+Canonical website:
+  http://php4mono.sourceforge.net/
+
+Canonical download:
+  http://sourceforge.net/projects/php4mono/files/
+
+-------------------------------------------
+
+Build instructions:
+  unpack mphp-0.2-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./mphp-0.2-X.cygport all
+
+This will create:
+  /usr/src/mphp-0.2-X-src.tar.bz2
+  /usr/src/mphp-0.2-X.tar.bz2
+  /usr/src/mono-mPHPRuntime0.2-0.2-X.tar.bz2
+
+-------------------------------------------
+
+Port Notes:
+
+----- version 0.2-1 -----
+Initial release for Cygwin 1.7.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/

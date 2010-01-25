@@ -1,0 +1,65 @@
+--- origsrc/mPHP_0.2_source/AssemblyInfo.cs	2006-02-27 15:48:22.000000000 -0600
++++ src/mPHP_0.2_source/AssemblyInfo.cs	2009-12-08 17:24:59.660379200 -0600
+@@ -4,3 +4,4 @@ using System.Reflection;
+ // Version information for an assembly consists of the following four values:
+ // Major Version, Minor Version, Build Number, Revision
+ [assembly: AssemblyVersion("0.2.0.0")]
++[assembly: AssemblyKeyFile("/usr/share/cygport/mono.snk")]
+--- origsrc/mPHP_0.2_source/PHP/Compiler/SymbolTable.cs	2006-03-02 13:04:16.000000000 -0600
++++ src/mPHP_0.2_source/PHP/Compiler/SymbolTable.cs	2009-12-08 17:43:38.448530000 -0600
+@@ -35,7 +35,7 @@ namespace PHP.Compiler {
+ 			ExternalNamespaces = new Hashtable();
+ 			ArrayList assemblies = new ArrayList();
+ 			assemblies.AddRange(System.AppDomain.CurrentDomain.GetAssemblies());
+-			assemblies.Add(Assembly.LoadFrom("mPHPRuntime.dll"));
++			assemblies.Add(Assembly.Load("mPHPRuntime"));
+ 			foreach (Assembly ass in assemblies) {
+ 				if (ass.GetName().Name != "mPHP")
+ 					try {
+--- origsrc/mPHP_0.2_source/PHP/Compiler/Visitors.cs	2006-03-03 13:44:44.000000000 -0600
++++ src/mPHP_0.2_source/PHP/Compiler/Visitors.cs	2009-12-08 17:21:50.676050400 -0600
+@@ -350,7 +350,7 @@ namespace PHP.Compiler {
+ 		public Hashtable TypesAlreadyProcessed;
+ 
+ 		public TypesVisitor() {
+-			mPHPRuntime = Assembly.LoadFrom("mPHPRuntime.dll");
++			mPHPRuntime = Assembly.Load("mPHPRuntime");
+ 			PHPRuntimeLang = mPHPRuntime.GetType("PHP.Runtime.Lang");
+ 			PHPRuntimeOperators = mPHPRuntime.GetType("PHP.Runtime.Operators");
+ 			PHPRuntimeConvert = mPHPRuntime.GetType("PHP.Runtime.Convert");
+@@ -445,7 +445,7 @@ namespace PHP.Compiler {
+ 		public MethodInfo MainMethod;
+ 
+ 		public ClassVariableAndFunctionsVisitor() {
+-			mPHPRuntime = Assembly.LoadFrom("mPHPRuntime.dll");
++			mPHPRuntime = Assembly.Load("mPHPRuntime");
+ 			PHPRuntimeLang = mPHPRuntime.GetType("PHP.Runtime.Lang");
+ 			PHPRuntimeOperators = mPHPRuntime.GetType("PHP.Runtime.Operators");
+ 			PHPRuntimeConvert = mPHPRuntime.GetType("PHP.Runtime.Convert");
+@@ -841,7 +841,7 @@ namespace PHP.Compiler {
+ 						MainMethod = FD.MthBld;
+ 						// disable warnings, if desired
+ 						if (!Report.WarningsEnabled) {
+-							mPHPRuntime = Assembly.LoadFrom("mPHPRuntime.dll");
++							mPHPRuntime = Assembly.Load("mPHPRuntime");
+ 							Type report = mPHPRuntime.GetType("PHP.Report");
+ 							FD.MthBld.GetILGenerator().Emit(OpCodes.Ldc_I4_0);
+ 							FD.MthBld.GetILGenerator().Emit(OpCodes.Stsfld, report.GetField("WarningsEnabled"));
+@@ -924,7 +924,7 @@ namespace PHP.Compiler {
+ 		public Assembly mPHPRuntime;
+ 
+ 		public InheritanceVisitor() {
+-			mPHPRuntime = Assembly.LoadFrom("mPHPRuntime.dll");
++			mPHPRuntime = Assembly.Load("mPHPRuntime");
+ 		}
+ 
+ 		public void Visit(AST ast) {
+@@ -1282,7 +1282,7 @@ namespace PHP.Compiler {
+ 		public ArrayList EnterLoopLabels, ExitLoopLabels;  // used for FOR, FOREACH, WHILE, DO and SWITCH
+ 
+ 		public EmitterVisitor() {
+-			mPHPRuntime = Assembly.LoadFrom("mPHPRuntime.dll");
++			mPHPRuntime = Assembly.Load("mPHPRuntime");
+ 			PHPRuntimeLang = mPHPRuntime.GetType("PHP.Runtime.Lang");
+ 			PHPRuntimeOperators = mPHPRuntime.GetType("PHP.Runtime.Operators");
+ 			PHPRuntimeConvert = mPHPRuntime.GetType("PHP.Runtime.Convert");

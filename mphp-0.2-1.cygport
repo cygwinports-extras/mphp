@@ -1,0 +1,31 @@
+inherit mono
+
+DESCRIPTION=".NET PHP compiler"
+HOMEPAGE="http://php4mono.sourceforge.net/"
+SRC_URI="mirror://sourceforge/php4mono/mPHP_${PV}_source.zip"
+SRC_DIR="mPHP_${PV}_source"
+
+PATCH_URI="0.2-Assembly.Load.patch"
+
+PKG_NAMES="mphp mono-mPHPRuntime0.2"
+mphp_CONTENTS="--exclude=gac usr/"
+mono_mPHPRuntime0_2_CONTENTS="usr/lib/mono/gac/"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake -j1
+}
+
+src_install() {
+	cd ${B}
+	gacinto mphp
+	dogac mPHPRuntime.dll
+
+	insinto /usr/lib/mono/mphp
+	doins mPHP.exe
+
+	mono_wrapper mphp /usr/lib/mono/mphp/mPHP.exe
+
+	dodoc authors
+}

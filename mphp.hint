@@ -1,0 +1,8 @@
+category: Interpreters DotNET PHP
+requires: mono mono-mPHPRuntime0.2
+sdesc: "Mono compiler for PHP code"
+ldesc: "PHP4Mono is a compiler that enables Mono to run PHP code. It 
+translates PHP scripts to Common Intermediate Language (CIL). Like that 
+PHP scripts can be executed as console applications on Mono. You can 
+even access other .NET assemblies and e.g. build Graphical User 
+Interfaces directly from within a PHP script using the Gnome libraries."
