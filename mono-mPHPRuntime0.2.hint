@@ -1,5 +1,6 @@
 category: Interpreters DotNET PHP
 requires: mono
+external-source: mphp
 sdesc: "Mono runtime for PHP"
 ldesc: "PHP4Mono is a compiler that enables Mono to run PHP code. It 
 translates PHP scripts to Common Intermediate Language (CIL). Like that 
